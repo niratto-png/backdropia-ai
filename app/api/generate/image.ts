@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   try {
     const { prompt, style } = await request.json();
 
-    const output = await replicate.run(
+    const output = (await replicate.run(
       'stability-ai/stable-diffusion:27b93a2413e7f36cd83da926f3656280b2931564ff050bf9575f1fdf9bea92b7',
       {
         input: {
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
           guidance_scale: 7.5,
         },
       }
-    );
+    )) as string[];
 
     return NextResponse.json({ imageUrl: output[0] });
   } catch (error) {
