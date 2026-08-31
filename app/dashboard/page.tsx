@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 
@@ -31,7 +30,6 @@ export default function Dashboard() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt, style }),
       })
-
       const data = await response.json()
       setGeneratedImage(data.imageUrl)
     } catch (error) {
@@ -91,7 +89,7 @@ export default function Dashboard() {
               className="w-full rounded mb-4"
             />
             <div className="flex gap-4">
-              
+              <a
                 href={generatedImage}
                 download
                 className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded text-center"
