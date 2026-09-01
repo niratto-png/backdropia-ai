@@ -46,6 +46,7 @@ export default function Home() {
       <Navbar />
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="text-sm text-blue-400 mb-4">Since 2026</div>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Studio-Quality Game Backgrounds
           </h2>
@@ -124,7 +125,7 @@ export default function Home() {
       </section>
 
       <footer className="bg-gray-950 py-8 text-center text-gray-400">
-        <p>&copy; 2024 Backdropia AI. All rights reserved.</p>
+        <p>&copy; 2026 Backdropia AI. All rights reserved.</p>
       </footer>
     </main>
   )
