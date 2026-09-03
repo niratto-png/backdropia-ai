@@ -54,10 +54,16 @@ export default function Home() {
             AI-powered backgrounds and UI assets. Generated in 30 seconds.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold">
+            
+              href="/dashboard"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition"
+            >
               Try Free for 7 Days
-            </button>
-            <button className="border border-gray-400 hover:border-white text-white px-8 py-3 rounded-lg font-semibold">
+            </a>
+            <button
+              onClick={() => alert('Demo video coming soon')}
+              className="border border-gray-400 hover:border-white text-white px-8 py-3 rounded-lg font-semibold transition"
+            >
               Watch Demo
             </button>
           </div>
@@ -69,15 +75,15 @@ export default function Home() {
 
       <section className="py-20 bg-gray-800">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl font-bold text-center mb-12 text-white">
             Simple, Powerful Pricing
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-8 rounded-lg border border-gray-700">
-              <h3 className="text-2xl font-bold mb-2">Starter</h3>
+              <h3 className="text-2xl font-bold mb-2 text-white">Starter</h3>
               <p className="text-gray-400 mb-4">Perfect for hobbyists</p>
-              <p className="text-4xl font-bold mb-6">$4.99</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6">
+              <p className="text-4xl font-bold mb-6 text-white">$4.99</p>
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition">
                 Get Started
               </button>
               <ul className="space-y-2 text-gray-300">
@@ -89,10 +95,10 @@ export default function Home() {
             </div>
 
             <div className="p-8 rounded-lg border border-blue-500 bg-blue-50 bg-opacity-5">
-              <h3 className="text-2xl font-bold mb-2">Pro</h3>
+              <h3 className="text-2xl font-bold mb-2 text-white">Pro</h3>
               <p className="text-gray-400 mb-4">For indie developers</p>
-              <p className="text-4xl font-bold mb-6">$14.99</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6">
+              <p className="text-4xl font-bold mb-6 text-white">$14.99</p>
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition">
                 Get Started
               </button>
               <ul className="space-y-2 text-gray-300">
@@ -105,10 +111,10 @@ export default function Home() {
             </div>
 
             <div className="p-8 rounded-lg border border-gray-700">
-              <h3 className="text-2xl font-bold mb-2">Studio</h3>
+              <h3 className="text-2xl font-bold mb-2 text-white">Studio</h3>
               <p className="text-gray-400 mb-4">For small studios</p>
-              <p className="text-4xl font-bold mb-6">$49.99</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6">
+              <p className="text-4xl font-bold mb-6 text-white">$49.99</p>
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition">
                 Get Started
               </button>
               <ul className="space-y-2 text-gray-300">
