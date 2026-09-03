@@ -1,69 +1,25 @@
 'use client'
 
-import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 
 export default function Home() {
-  const [prompt, setPrompt] = useState('')
-  const [style, setStyle] = useState('fantasy')
-  const [loading, setLoading] = useState(false)
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null)
-
-  const styles = [
-    'Fantasy',
-    'Cyberpunk',
-    'Sci-Fi',
-    'Pixel Art',
-    'Anime',
-    'Realistic',
-  ]
-
-  const handleGenerate = async () => {
-    if (!prompt.trim()) {
-      alert('Please enter a prompt')
-      return
-    }
-
-    setLoading(true)
-    try {
-      const response = await fetch('/api/generate/image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, style }),
-      })
-
-      const data = await response.json()
-      setGeneratedImage(data.imageUrl)
-    } catch (error) {
-      alert('Failed to generate image')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <>
       <Navbar />
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="text-sm text-blue-400 mb-4">Since 2026</div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Studio-Quality Game Backgrounds
-          </h2>
+          </h1>
           <p className="text-xl text-gray-300 mb-8">
             AI-powered backgrounds and UI assets. Generated in 30 seconds.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            
-              href="/dashboard"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition"
-            >
+            <a href="/dashboard" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition">
               Try Free for 7 Days
             </a>
-            <button
-              onClick={() => alert('Demo video coming soon')}
-              className="border border-gray-400 hover:border-white text-white px-8 py-3 rounded-lg font-semibold transition"
-            >
+            <button onClick={() => alert('Demo video coming soon')} className="border border-gray-400 hover:border-white text-white px-8 py-3 rounded-lg font-semibold transition">
               Watch Demo
             </button>
           </div>
