@@ -1,34 +1,20 @@
-import Replicate from 'replicate';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server'
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN,
-});
-
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const { prompt, style } = await request.json();
+    const { prompt } = await req.json()
 
-    const output = (await replicate.run(
-      'stability-ai/stable-diffusion:27b93a2413e7f36cd83da926f3656280b2931564ff050bf9575f1fdf9bea92b7',
-      {
-        input: {
-          prompt: `${style} game background: ${prompt}`,
-          num_outputs: 1,
-          height: 1080,
-          width: 1920,
-          scheduler: 'K_EULER',
-          num_inference_steps: 50,
-          guidance_scale: 7.5,
-        },
-      }
-    )) as string[];
-
-    return NextResponse.json({ imageUrl: output[0] });
+    // ここで画像生成APIを呼ぶ（今は未実装）
+    // Replicate か別のAPIを使う
+    
+    return NextResponse.json({ 
+      imageUrl: 'https://via.placeholder.com/512x512',
+      success: true 
+    })
   } catch (error) {
-    return NextResponse.json(
-      { error: 'Failed to generate image' },
-      { status: 500 }
-    );
+    return NextResponse.json({ 
+      error: '画像生成に失敗しました',
+      success: false 
+    }, { status: 500 })
   }
 }
