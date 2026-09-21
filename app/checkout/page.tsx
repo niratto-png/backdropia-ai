@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { loadStripe } from '@stripe/js'
 import Navbar from '@/components/Navbar'
 
 export default function Checkout() {
@@ -23,11 +22,13 @@ export default function Checkout() {
         body: JSON.stringify({ priceId: plans[selectedPlan].priceId }),
       })
 
-      const { sessionId } = await response.json()
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!)
-      await stripe?.redirectToCheckout({ sessionId })
+      const data = await response.json()
+      if (data.url) {
+        window.location.href = data.url
+      }
     } catch (error) {
       alert('決済処理に失敗しました')
+    } finally {
       setLoading(false)
     }
   }
