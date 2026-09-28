@@ -9,9 +9,9 @@ export default function Checkout() {
   const [selectedPlan, setSelectedPlan] = useState<'starter' | 'pro' | 'studio'>('pro')
 
   const plans = {
-    starter: { name: 'Starter', price: 499, priceId: 'price_starter' },
-    pro: { name: 'Pro', price: 1499, priceId: 'price_pro' },
-    studio: { name: 'Studio', price: 4999, priceId: 'price_studio' },
+    starter: { name: 'Starter', price: 499, priceId: 'price_1UKmCHRqec4CQoM9caOdX1v5' },
+    pro: { name: 'Pro', price: 1499, priceId: 'price_1UKmCtRqec4CQoM91eAuyuy1' },
+    studio: { name: 'Studio', price: 4999, priceId: 'price_1UKmDoRqec4CQoM9zmYFhXkj' },
   }
 
   const handleCheckout = async () => {
