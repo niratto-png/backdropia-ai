@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Navbar from '@/components/Navbar'
+import { loadStripe } from '@stripe/js'
 
 export default function Checkout() {
   const [loading, setLoading] = useState(false)
@@ -23,10 +24,12 @@ export default function Checkout() {
       })
 
       const data = await response.json()
-      if (data.url) {
-        window.location.href = data.url
+      if (data.sessionId) {
+        const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!)
+        await stripe?.redirectToCheckout({ sessionId: data.sessionId })
       }
     } catch (error) {
+      console.error('Checkout error:', error)
       alert('決済処理に失敗しました')
     } finally {
       setLoading(false)
