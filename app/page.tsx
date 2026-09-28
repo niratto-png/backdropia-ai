@@ -16,7 +16,7 @@ export default function Home() {
             AI-powered backgrounds and UI assets. Generated in 30 seconds.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <a href="/dashboard" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition">
+            <a href="/checkout" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition inline-block">
               Try Free for 7 Days
             </a>
             <button onClick={() => alert('Demo video coming soon')} className="border border-gray-400 hover:border-white text-white px-8 py-3 rounded-lg font-semibold transition">
@@ -39,9 +39,9 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2 text-white">Starter</h3>
               <p className="text-gray-400 mb-4">Perfect for hobbyists</p>
               <p className="text-4xl font-bold mb-6 text-white">$4.99</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition">
+              <a href="/checkout" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition inline-block text-center">
                 Get Started
-              </button>
+              </a>
               <ul className="space-y-2 text-gray-300">
                 <li>✓ 30 generations/month</li>
                 <li>✓ 5 styles</li>
@@ -54,9 +54,9 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2 text-white">Pro</h3>
               <p className="text-gray-400 mb-4">For indie developers</p>
               <p className="text-4xl font-bold mb-6 text-white">$14.99</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition">
+              <a href="/checkout" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition inline-block text-center">
                 Get Started
-              </button>
+              </a>
               <ul className="space-y-2 text-gray-300">
                 <li>✓ 200 generations/month</li>
                 <li>✓ 20 styles</li>
@@ -70,9 +70,9 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2 text-white">Studio</h3>
               <p className="text-gray-400 mb-4">For small studios</p>
               <p className="text-4xl font-bold mb-6 text-white">$49.99</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition">
+              <a href="/checkout" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded mb-6 transition inline-block text-center">
                 Get Started
-              </button>
+              </a>
               <ul className="space-y-2 text-gray-300">
                 <li>✓ Unlimited generations</li>
                 <li>✓ All styles</li>
