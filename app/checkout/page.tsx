@@ -1,87 +1,113 @@
 'use client'
 
 import { useState } from 'react'
-import Navbar from '@/components/Navbar'
 
-export default function Checkout() {
+const plans = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    price: '$4.99/月',
+    priceId: 'price_1UKmCHRqec4CQoM9caOdX1v5',
+    description: 'For hobbyists',
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    price: '$14.99/月',
+    priceId: 'price_1UKmCtRqec4CQoM91eAuyuy1',
+    description: 'For indie developers',
+  },
+  {
+    id: 'studio',
+    name: 'Studio',
+    price: '$49.99/月',
+    priceId: 'price_1UKmDoRqec4CQoM9zmYFhXkj',
+    description: 'For small studios',
+  },
+]
+
+export default function CheckoutPage() {
+  const [selectedPlan, setSelectedPlan] = useState(plans[1].priceId)
   const [loading, setLoading] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState<'starter' | 'pro' | 'studio'>('pro')
-
-  const plans = {
-    starter: { name: 'Starter', price: 499, priceId: 'price_1UKmCHRqec4CQoM9caOdX1v5' },
-    pro: { name: 'Pro', price: 1499, priceId: 'price_1UKmCtRqec4CQoM91eAuyuy1' },
-    studio: { name: 'Studio', price: 4999, priceId: 'price_1UKmDoRqec4CQoM9zmYFhXkj' },
-  }
+  const [error, setError] = useState<string | null>(null)
 
   const handleCheckout = async () => {
     setLoading(true)
+    setError(null)
+
     try {
-      const response = await fetch('/api/checkout', {
+      const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ priceId: plans[selectedPlan].priceId }),
+        body: JSON.stringify({ priceId: selectedPlan }),
       })
 
-      const data = await response.json()
-      if (data.url) {
-        window.location.href = data.url
+      const data = await res.json()
+
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || 'Checkout failed')
       }
-    } catch (error) {
-      console.error('Checkout error:', error)
-      alert('決済処理に失敗しました')
-    } finally {
+
+      window.location.href = data.url
+    } catch (err) {
+      console.error(err)
+      setError('決済ページへの移動に失敗しました。時間をおいて再度お試しください。')
       setLoading(false)
     }
   }
 
   return (
-    <>
-      <Navbar />
-      <section className="bg-gray-900 min-h-screen py-20">
-        <div className="max-w-2xl mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-12 text-white">
-            7日間無料トライアル開始
-          </h1>
+    <main className="min-h-screen bg-gray-900 text-white flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center mb-8">プランを選択</h1>
 
-          <div className="bg-gray-800 rounded-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-white mb-6">プラン選択</h2>
-
-            <div className="space-y-4 mb-8">
-              {Object.entries(plans).map(([key, plan]) => (
-                <div
-                  key={key}
-                  onClick={() => setSelectedPlan(key as 'starter' | 'pro' | 'studio')}
-                  className={`p-6 rounded-lg cursor-pointer border-2 transition ${
-                    selectedPlan === key
-                      ? 'border-blue-500 bg-blue-950'
-                      : 'border-gray-700 bg-gray-750 hover:border-gray-600'
-                  }`}
-                >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h3 className="text-xl font-bold text-white">{plan.name}</h3>
-                      <p className="text-gray-400">${(plan.price / 100).toFixed(2)}/月</p>
-                    </div>
-                    <div className={`w-6 h-6 rounded border-2 ${selectedPlan === key ? 'bg-blue-500 border-blue-500' : 'border-gray-500'}`} />
+        <div className="space-y-4">
+          {plans.map((plan) => {
+            const isSelected = selectedPlan === plan.priceId
+            return (
+              <button
+                key={plan.id}
+                type="button"
+                onClick={() => setSelectedPlan(plan.priceId)}
+                className={`w-full text-left p-6 rounded-lg border transition ${
+                  isSelected
+                    ? 'border-blue-500 bg-blue-950'
+                    : 'border-gray-700 bg-gray-800 hover:border-gray-500'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xl font-semibold">{plan.name}</p>
+                    <p className="text-sm text-gray-400">{plan.description}</p>
+                    <p className="mt-2 text-lg">{plan.price}</p>
                   </div>
+                  <input
+                    type="radio"
+                    readOnly
+                    checked={isSelected}
+                    className="h-5 w-5 accent-blue-500"
+                  />
                 </div>
-              ))}
-            </div>
-
-            <button
-              onClick={handleCheckout}
-              disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white py-3 rounded-lg font-semibold transition"
-            >
-              {loading ? '処理中...' : 'トライアルを開始'}
-            </button>
-
-            <p className="text-center text-gray-400 mt-4 text-sm">
-              7日後に自動更新されます。いつでもキャンセル可能です。
-            </p>
-          </div>
+              </button>
+            )
+          })}
         </div>
-      </section>
-    </>
+
+        <button
+          type="button"
+          onClick={handleCheckout}
+          disabled={loading}
+          className="mt-8 w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-500 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {loading ? '移動中...' : 'トライアルを開始'}
+        </button>
+
+        {error && <p className="mt-4 text-red-400 text-center text-sm">{error}</p>}
+
+        <p className="mt-4 text-center text-sm text-gray-400">
+          7日後に自動更新されます。いつでもキャンセル可能です。
+        </p>
+      </div>
+    </main>
   )
 }
