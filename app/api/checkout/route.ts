@@ -25,17 +25,20 @@ export async function POST(request: NextRequest) {
       throw new Error('NEXT_PUBLIC_URL is not set')
     }
 
-    const session = await stripe.checkout.sessions.create({
+    // Managed Payments is on by default for this account and requires a
+    // product tax code on every price. Turn it off for this session.
+    // (Passed via a variable: this SDK version's types don't include the field yet.)
+    const params: Stripe.Checkout.SessionCreateParams & {
+      managed_payments?: { enabled: boolean }
+    } = {
       mode: 'subscription',
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
+      line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${siteUrl}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/checkout`,
-    })
+      managed_payments: { enabled: false },
+    }
+
+    const session = await stripe.checkout.sessions.create(params)
 
     if (!session.url) {
       throw new Error('Stripe session URL is missing')
