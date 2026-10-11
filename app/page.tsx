@@ -146,7 +146,7 @@ export default function Home() {
             <Reveal delay={100}>
               <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
                 Studio-quality
-                <span className="block bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-grad-shift">
+                <span className="-mb-6 block pb-6 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-grad-shift">
                   game backgrounds
                 </span>
               </h1>

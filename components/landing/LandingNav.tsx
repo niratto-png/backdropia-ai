@@ -32,10 +32,10 @@ export default function LandingNav() {
         </a>
 
         <div className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-          <a href="#gallery" className="transition hover:text-blue-600">Gallery</a>
-          <a href="#features" className="transition hover:text-blue-600">Features</a>
-          <a href="#pricing" className="transition hover:text-blue-600">Pricing</a>
-          <a href="#faq" className="transition hover:text-blue-600">FAQ</a>
+          <a href="/#gallery" className="transition hover:text-blue-600">Gallery</a>
+          <a href="/#features" className="transition hover:text-blue-600">Features</a>
+          <a href="/#pricing" className="transition hover:text-blue-600">Pricing</a>
+          <a href="/#faq" className="transition hover:text-blue-600">FAQ</a>
         </div>
 
         <div className="flex items-center gap-3">
