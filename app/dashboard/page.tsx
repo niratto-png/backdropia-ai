@@ -35,30 +35,30 @@ export default function Dashboard() {
       <Navbar />
       <main className="bg-gray-900 min-h-screen py-20">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl font-bold text-white mb-12">AI背景生成</h1>
+          <h1 className="text-4xl font-bold text-white mb-12">AI Background Generator</h1>
 
           <div className="bg-gray-800 rounded-lg p-8 mb-8">
             <div className="mb-6">
-              <label className="block text-white mb-2">プロンプト</label>
+              <label className="block text-white mb-2">Prompt</label>
               <textarea
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 className="w-full bg-gray-700 text-white rounded p-3 focus:outline-none"
                 rows={4}
-                placeholder="背景のイメージを入力してください"
+                placeholder="Describe the background you want"
               />
             </div>
 
             <div className="mb-6">
-              <label className="block text-white mb-2">スタイル</label>
+              <label className="block text-white mb-2">Style</label>
               <select
                 value={style}
                 onChange={(e) => setStyle(e.target.value)}
                 className="w-full bg-gray-700 text-white rounded p-3 focus:outline-none"
               >
-                <option value="fantasy">ファンタジー</option>
+                <option value="fantasy">Fantasy</option>
                 <option value="scifi">SF</option>
-                <option value="realistic">リアル</option>
+                <option value="realistic">Realistic</option>
               </select>
             </div>
 
@@ -67,13 +67,13 @@ export default function Dashboard() {
               disabled={loading}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white py-3 rounded-lg font-semibold transition"
             >
-              {loading ? '生成中...' : '背景を生成'}
+              {loading ? 'Generating...' : 'Generate background'}
             </button>
           </div>
 
           {generatedImage && (
             <div className="bg-gray-800 rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">生成結果</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">Result</h2>
               <img
                 src={generatedImage}
                 alt="Generated background"

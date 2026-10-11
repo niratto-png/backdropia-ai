@@ -58,7 +58,7 @@ export default function CheckoutPage() {
       window.location.href = data.url
     } catch (err) {
       console.error(err)
-      setError('決済ページへの移動に失敗しました。時間をおいて再度お試しください。')
+      setError('Could not open the checkout page. Please try again later.')
       setLoading(false)
     }
   }
@@ -74,8 +74,8 @@ export default function CheckoutPage() {
         {/* plans */}
         <section className="lg:col-span-3">
           <p className="text-sm font-semibold uppercase tracking-widest text-blue-600">Checkout</p>
-          <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">プランを選択</h1>
-          <p className="mt-3 text-slate-600">あとからいつでもプランは変更・解約できます。</p>
+          <h1 className="mt-3 text-4xl font-bold tracking-tight md:text-5xl">Choose a plan</h1>
+          <p className="mt-3 text-slate-600">You can change or cancel your plan anytime.</p>
 
           <div className="mt-10 space-y-4">
             {plans.map((plan) => {
@@ -102,7 +102,7 @@ export default function CheckoutPage() {
                       <p className="text-sm text-slate-500">{plan.description}</p>
                       <p className="mt-3 text-3xl font-bold tracking-tight">
                         {plan.price}
-                        <span className="text-sm font-normal text-slate-500"> /月</span>
+                        <span className="text-sm font-normal text-slate-500"> /mo</span>
                       </p>
                     </div>
                     <span
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
                 <p className="text-2xl font-bold">{current.name}</p>
                 <p className="text-2xl font-bold">
                   {current.price}
-                  <span className="text-sm font-normal text-slate-400"> /月</span>
+                  <span className="text-sm font-normal text-slate-400"> /mo</span>
                 </p>
               </div>
 
@@ -157,7 +157,7 @@ export default function CheckoutPage() {
                 className="group relative mt-8 w-full overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-sky-400 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/30 transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:animate-shimmer" />
-                <span className="relative">{loading ? '移動中...' : '購読を開始'}</span>
+                <span className="relative">{loading ? 'Redirecting...' : 'Start subscription'}</span>
               </button>
 
               {error && (
@@ -167,9 +167,9 @@ export default function CheckoutPage() {
               )}
 
               <p className="mt-6 text-center text-xs leading-relaxed text-slate-400">
-                月額課金です。いつでもキャンセル可能です。
+                Billed monthly. Cancel anytime.
                 <br />
-                決済はStripeの安全な画面で行われます。
+                Payment is handled on Stripe's secure checkout page.
               </p>
             </div>
           </div>

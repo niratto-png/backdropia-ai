@@ -4,8 +4,8 @@ export async function POST(req: NextRequest) {
   try {
     const { prompt } = await req.json()
 
-    // ここで画像生成APIを呼ぶ（今は未実装）
-    // Replicate か別のAPIを使う
+    // Call the image generation API here (not implemented yet)
+    // Use Replicate or another API
     
     return NextResponse.json({ 
       imageUrl: 'https://via.placeholder.com/512x512',
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     })
   } catch (error) {
     return NextResponse.json({ 
-      error: '画像生成に失敗しました',
+      error: 'Image generation failed',
       success: false 
     }, { status: 500 })
   }
